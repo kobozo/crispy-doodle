@@ -45,6 +45,16 @@ Task(testing-agent): "Write tests for [path]. Test: [behaviors]"
 | haiku | code-reviewer, accessibility-auditor, api-designer, architecture-agent, compliance-advisor, performance-analyst, ux-consultant | Analysis, reviews, planning |
 | opus | All implementation agents | Code changes, complex reasoning |
 
+### Git Enforcement Hooks (Optional)
+
+These hooks can be enabled via `/stack-agents:setup`:
+
+| Hook | Behavior |
+|------|----------|
+| Require commit | Blocks stopping if uncommitted changes exist |
+| Require push | Blocks stopping if unpushed commits exist |
+| Require feature branch | Blocks stopping if on main/master branch |
+
 ### Available Commands
 
 - `/stack-agents:setup` - Reconfigure plugin
