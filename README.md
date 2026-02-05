@@ -45,7 +45,7 @@ This plugin was inspired by and builds upon ideas from:
 
 ## Contributing
 
-Contributions welcome! Please open an issue or PR.
+Contributions welcome! Please open an issue or PR on GitHub.
 
 ## License
 
