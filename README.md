@@ -43,6 +43,10 @@ This plugin was inspired by and builds upon ideas from:
 - [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) by Yeachan Heo
 - [superpowers](https://github.com/obra/superpowers) by Jesse Vincent
 
+## Contributing
+
+Contributions welcome! Please open an issue or PR.
+
 ## License
 
 MIT
