@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "yannick-agents",
+  "version": "1.0.0",
+  "description": "Specialized Claude Code agents for modern full-stack development with model tiering optimization",
+  "owner": {
+    "name": "Yannick",
+    "url": "https://github.com/yannick"
+  },
+  "plugins": [
+    {
+      "name": "stack-agents",
+      "description": "29 specialized agents for React/Vite, FastAPI, Fastify, PostgreSQL, Firestore, GCP, and more. Includes model tiering (haiku for analysis, opus for implementation), SubagentStop hooks for test enforcement, and utility skills.",
+      "version": "1.0.0",
+      "source": "./plugins/stack-agents",
+      "category": "development"
+    }
+  ]
+}
