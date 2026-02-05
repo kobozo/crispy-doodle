@@ -2,6 +2,25 @@
 
 29 specialized Claude Code agents for full-stack development with model tiering and test enforcement.
 
+## Quick Start
+
+After installing, run the setup command:
+
+```
+/stack-agents:setup
+```
+
+This configures CLAUDE.md with agent delegation rules and optional test enforcement hooks.
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `/stack-agents:setup` | Initial configuration |
+| `/stack-agents:agents` | List all agents |
+| `/stack-agents:worktree` | Git worktree helper |
+| `/stack-agents:debug` | Systematic debugging guide |
+
 ## Tech Stack Coverage
 
 | Layer | Technologies | Agents |
