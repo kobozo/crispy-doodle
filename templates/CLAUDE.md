@@ -1,4 +1,4 @@
-# Stack Agents Configuration
+# Crispy Doodle Configuration
 
 ## Agent Delegation Rules
 
@@ -47,7 +47,7 @@ Task(testing-agent): "Write tests for [path]. Test: [behaviors]"
 
 ### Git Enforcement Hooks (Optional)
 
-These hooks can be enabled via `/stack-agents:setup`:
+These hooks can be enabled via `/crispy-doodle:setup`:
 
 | Hook | Behavior |
 |------|----------|
@@ -57,7 +57,7 @@ These hooks can be enabled via `/stack-agents:setup`:
 
 ### Available Commands
 
-- `/stack-agents:setup` - Reconfigure plugin
-- `/stack-agents:agents` - List all agents
-- `/stack-agents:worktree` - Git worktree helper
-- `/stack-agents:debug` - Systematic debugging guide
+- `/crispy-doodle:setup` - Reconfigure plugin
+- `/crispy-doodle:agents` - List all agents
+- `/crispy-doodle:worktree` - Git worktree helper
+- `/crispy-doodle:debug` - Systematic debugging guide

@@ -1,6 +1,6 @@
 ---
 name: setup
-description: Initialize stack-agents plugin - configures CLAUDE.md with agent delegation rules and optional hooks. Supports resume if interrupted.
+description: Initialize crispy-doodle plugin - configures CLAUDE.md with agent delegation rules and optional hooks. Supports resume if interrupted.
 allowed_tools:
   - Read
   - Write
@@ -10,9 +10,9 @@ allowed_tools:
   - WebFetch
 ---
 
-# Stack Agents Setup
+# Crispy Doodle Setup
 
-You are setting up the stack-agents plugin. This setup:
+You are setting up the crispy-doodle plugin. This setup:
 1. Configures CLAUDE.md with agent delegation rules
 2. Optionally adds test enforcement hooks
 3. Optionally adds git enforcement hooks (commit, push, feature branch)
@@ -24,8 +24,8 @@ You are setting up the stack-agents plugin. This setup:
 ### Step 1: Check for Existing Setup / Resume
 
 ```bash
-mkdir -p ~/.claude/.stack-agents
-cat ~/.claude/.stack-agents/setup-state.json 2>/dev/null || echo '{"step": 0}'
+mkdir -p ~/.claude/.crispy-doodle
+cat ~/.claude/.crispy-doodle/setup-state.json 2>/dev/null || echo '{"step": 0}'
 ```
 
 If `step > 0` and `step < 8`, ask user:
@@ -37,7 +37,7 @@ If `step > 0` and `step < 8`, ask user:
 Display:
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║                    Stack Agents Setup                        ║
+║                    Crispy Doodle Setup                        ║
 ║   29 specialized agents for full-stack development           ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
@@ -45,7 +45,7 @@ Display:
 Use AskUserQuestion:
 ```json
 {
-  "question": "Where should stack-agents be configured?",
+  "question": "Where should crispy-doodle be configured?",
   "header": "Scope",
   "options": [
     {"label": "Global (recommended)", "description": "Applies to ALL projects (~/.claude/CLAUDE.md)"},
@@ -56,7 +56,7 @@ Use AskUserQuestion:
 
 Save state after choice:
 ```bash
-echo '{"step": 2, "scope": "global|local"}' > ~/.claude/.stack-agents/setup-state.json
+echo '{"step": 2, "scope": "global|local"}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
 ### Step 3: Configure CLAUDE.md
@@ -72,7 +72,7 @@ Determine target path:
 
 #### 3a. Check for Stack-Agents Section
 
-If target exists, read existing content and check if `# Stack Agents Configuration` section exists:
+If target exists, read existing content and check if `# Crispy Doodle Configuration` section exists:
 - If exists: ask to replace or skip (existing behavior)
 - If not exists: proceed to conflict detection (Step 3b)
 
@@ -83,7 +83,7 @@ If target doesn't exist:
 
 #### 3b. Conflict Detection
 
-Before appending, scan the existing CLAUDE.md for content that may conflict with stack-agents:
+Before appending, scan the existing CLAUDE.md for content that may conflict with crispy-doodle:
 
 **Conflict Patterns to Detect:**
 
@@ -92,7 +92,7 @@ Before appending, scan the existing CLAUDE.md for content that may conflict with
 | `## Agents?` or `Agent.*Triggering` or `Agent.*Auto` | Agent Definitions | Existing agent delegation rules |
 | `## Model Tiering` or `haiku.*opus` or `opus.*haiku` | Model Tiering | Existing model tier assignments |
 | `## Testing.*MANDATORY` or `Testing Requirements` | Testing Rules | Existing mandatory testing rules |
-| `frontend-agent\|python-backend\|backend-nodejs\|testing-agent\|code-reviewer` (outside comments) | Agent References | References to specific stack-agents |
+| `frontend-agent\|python-backend\|backend-nodejs\|testing-agent\|code-reviewer` (outside comments) | Agent References | References to specific crispy-doodle |
 | `Task\(.*-agent\)` or `Task tool.*agent` | Delegation Patterns | Existing delegation rules |
 
 **Detection Logic:**
@@ -127,11 +127,11 @@ Found potential conflicts in existing CLAUDE.md:
 Use AskUserQuestion:
 ```json
 {
-  "question": "Found existing configuration that may conflict with stack-agents. How should we proceed?",
+  "question": "Found existing configuration that may conflict with crispy-doodle. How should we proceed?",
   "header": "Conflicts",
   "options": [
-    {"label": "Merge (keep both)", "description": "Append stack-agents config after existing content - may have duplicates"},
-    {"label": "Replace conflicts", "description": "Comment out conflicting sections, then add stack-agents"},
+    {"label": "Merge (keep both)", "description": "Append crispy-doodle config after existing content - may have duplicates"},
+    {"label": "Replace conflicts", "description": "Comment out conflicting sections, then add crispy-doodle"},
     {"label": "Skip CLAUDE.md", "description": "Only configure hooks, don't modify CLAUDE.md"}
   ]
 }
@@ -139,16 +139,16 @@ Use AskUserQuestion:
 
 **Resolution Actions:**
 
-- **Merge (keep both)**: Append stack-agents template to end of file with a separator:
+- **Merge (keep both)**: Append crispy-doodle template to end of file with a separator:
   ```
   ---
-  <!-- Stack Agents Configuration (added by /stack-agents:setup) -->
+  <!-- Crispy Doodle Configuration (added by /crispy-doodle:setup) -->
   [template content]
   ```
 
 - **Replace conflicts**: For each conflicting section:
-  1. Wrap in HTML comments: `<!-- [Commented by stack-agents setup]\n[original content]\n-->`
-  2. Then append stack-agents template
+  1. Wrap in HTML comments: `<!-- [Commented by crispy-doodle setup]\n[original content]\n-->`
+  2. Then append crispy-doodle template
 
 - **Skip CLAUDE.md**: Set `claudeMdSkipped: true` in state, continue to Step 4
 
@@ -158,7 +158,7 @@ Append template normally with separator.
 
 Save state:
 ```bash
-echo '{"step": 3, "scope": "...", "claudeMdPath": "...", "conflicts": [...], "resolution": "merge|replace|skip"}' > ~/.claude/.stack-agents/setup-state.json
+echo '{"step": 3, "scope": "...", "claudeMdPath": "...", "conflicts": [...], "resolution": "merge|replace|skip"}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
 ### Step 4: Test Enforcement Hook (Optional)
@@ -179,7 +179,7 @@ If yes, read `~/.claude/settings.json` and merge the test enforcement hook (see 
 
 Save state:
 ```bash
-echo '{"step": 4, "scope": "...", "claudeMdPath": "...", "testHook": true|false}' > ~/.claude/.stack-agents/setup-state.json
+echo '{"step": 4, "scope": "...", "claudeMdPath": "...", "testHook": true|false}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
 ### Step 5: Git Enforcement Hooks (Optional)
@@ -204,7 +204,7 @@ Otherwise, add selected hooks to `~/.claude/settings.json` (see Step 7 for hook 
 
 Save state:
 ```bash
-echo '{"step": 5, "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {"requireCommit": true|false, "requirePush": true|false, "requireFeatureBranch": true|false}}' > ~/.claude/.stack-agents/setup-state.json
+echo '{"step": 5, "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {"requireCommit": true|false, "requirePush": true|false, "requireFeatureBranch": true|false}}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
 ### Step 6: Git-Aware Status Line (Optional)
@@ -240,7 +240,7 @@ Example output: `/Users/dev/myproject on feature/auth`
 
 Save state:
 ```bash
-echo '{"step": 6, "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": true|false}' > ~/.claude/.stack-agents/setup-state.json
+echo '{"step": 6, "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": true|false}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
 ### Step 7: Apply Hooks to settings.json
@@ -305,7 +305,7 @@ IMPORTANT: Merge hooks into existing Stop array, don't replace entire settings.j
 
 Save final state:
 ```bash
-echo '{"step": 8, "version": "1.2.0", "setupDate": "'$(date -Iseconds)'", "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": ...}' > ~/.claude/.stack-agents/setup-state.json
+echo '{"step": 8, "version": "1.2.0", "setupDate": "'$(date -Iseconds)'", "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": ...}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
 Display completion message:
@@ -340,10 +340,10 @@ Quick Start:
   • "Review this PR" → code-reviewer (haiku)
 
 Commands:
-  /stack-agents:agents    - List all agents
-  /stack-agents:worktree  - Git worktree helper
-  /stack-agents:debug     - Systematic debugging
-  /stack-agents:setup     - Reconfigure
+  /crispy-doodle:agents    - List all agents
+  /crispy-doodle:worktree  - Git worktree helper
+  /crispy-doodle:debug     - Systematic debugging
+  /crispy-doodle:setup     - Reconfigure
 
 Happy coding! 🚀
 ```
@@ -353,11 +353,11 @@ Happy coding! 🚀
 If any step fails:
 1. Save current state with error info
 2. Display error message
-3. Suggest running `/stack-agents:setup` to resume
+3. Suggest running `/crispy-doodle:setup` to resume
 
 ## Resume Logic
 
 When resuming:
-1. Read state from `~/.claude/.stack-agents/setup-state.json`
+1. Read state from `~/.claude/.crispy-doodle/setup-state.json`
 2. Skip completed steps
 3. Continue from last incomplete step

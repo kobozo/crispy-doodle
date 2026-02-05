@@ -1,12 +1,16 @@
 # crispy-doodle
 
-A Claude Code plugin marketplace with specialized agents for modern full-stack development.
+A Claude Code plugin with 29 specialized agents for modern full-stack development.
 
 ## Installation
 
 ```bash
-/plugin marketplace add kobozo/crispy-doodle
-/plugin install crispy-doodle@crispy-doodle
+claude plugins:add https://github.com/kobozo/crispy-doodle
+```
+
+Then run setup:
+```bash
+/crispy-doodle:setup
 ```
 
 ## Features

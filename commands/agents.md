@@ -1,9 +1,9 @@
 ---
 name: agents
-description: List all available stack-agents and their purposes
+description: List all available crispy-doodle and their purposes
 ---
 
-# Stack Agents Reference
+# Crispy Doodle Reference
 
 ## Analysis Agents (haiku - cost-optimized)
 
@@ -52,7 +52,7 @@ Agents are triggered automatically based on your request. You can also explicitl
 
 ## Commands
 
-- `/stack-agents:setup` - Configure agent delegation
-- `/stack-agents:worktree` - Git worktree helper
-- `/stack-agents:debug` - Systematic debugging guide
-- `/stack-agents:agents` - This reference
+- `/crispy-doodle:setup` - Configure agent delegation
+- `/crispy-doodle:worktree` - Git worktree helper
+- `/crispy-doodle:debug` - Systematic debugging guide
+- `/crispy-doodle:agents` - This reference

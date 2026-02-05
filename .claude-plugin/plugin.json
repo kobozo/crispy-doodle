@@ -1,10 +1,10 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
-  "name": "stack-agents",
+  "name": "crispy-doodle",
   "version": "1.0.0",
   "description": "29 specialized agents for full-stack development with model tiering and test enforcement",
   "author": {
-    "name": "Yannick"
+    "name": "kobozo"
   },
   "keywords": [
     "agents",
