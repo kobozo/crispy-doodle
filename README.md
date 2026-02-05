@@ -5,26 +5,17 @@ A Claude Code plugin marketplace with specialized agents for modern full-stack d
 ## Installation
 
 ```bash
-claude plugins:add /path/to/crispy-doodle
+/plugin marketplace add kobozo/crispy-doodle
+/plugin install crispy-doodle@crispy-doodle
 ```
 
-Or add the git repository:
-
-```bash
-claude plugins:add https://github.com/kobozo/crispy-doodle
-```
-
-## Plugins
-
-### stack-agents
+## Features
 
 29 specialized agents optimized for full-stack development with:
 
 - **Model Tiering**: Analysis agents use `haiku` (cost-optimized), implementation agents use `opus`
 - **Test Enforcement**: SubagentStop hooks verify tests before completion
 - **Project-Specific Knowledge**: Agents know your stack patterns and conventions
-
-See [stack-agents README](./plugins/stack-agents/README.md) for details.
 
 ## Philosophy
 
