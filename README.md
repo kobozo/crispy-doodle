@@ -1,17 +1,17 @@
-# shomod-777
+# crispy-doodle
 
 A Claude Code plugin marketplace with specialized agents for modern full-stack development.
 
 ## Installation
 
 ```bash
-claude plugins:add /path/to/shomod-777
+claude plugins:add /path/to/crispy-doodle
 ```
 
 Or add the git repository:
 
 ```bash
-claude plugins:add https://github.com/shomod-777/shomod-777
+claude plugins:add https://github.com/kobozo/crispy-doodle
 ```
 
 ## Plugins

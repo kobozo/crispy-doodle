@@ -1,11 +1,11 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "shomod-777",
+  "name": "crispy-doodle",
   "version": "1.0.0",
   "description": "Specialized Claude Code agents for modern full-stack development with model tiering optimization",
   "owner": {
-    "name": "Yannick",
-    "url": "https://github.com/yannick"
+    "name": "kobozo",
+    "url": "https://github.com/kobozo"
   },
   "plugins": [
     {
