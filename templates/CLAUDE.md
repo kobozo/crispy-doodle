@@ -28,6 +28,31 @@ Create an agent team with:
 
 If agent teams are not enabled, this will gracefully fall back to normal Task tool delegation.
 
+### Task Management (Built-in Tools)
+
+Use Claude Code's built-in task tools for tracking work on complex tasks:
+
+| Tool | Purpose |
+|------|---------|
+| `TaskCreate` | Create a new task with subject, description, activeForm |
+| `TaskUpdate` | Update task status (pending → in_progress → completed) |
+| `TaskList` | View all tasks and their status |
+| `TaskGet` | Get full details of a specific task |
+
+**When to use Task tools:**
+- Multi-step implementations (3+ steps)
+- Complex tasks requiring tracking
+- When the user provides multiple tasks
+- Plan mode execution
+
+**Pattern:**
+```
+TaskCreate: subject="Implement auth endpoint", description="Add JWT validation...", activeForm="Implementing auth"
+TaskUpdate: taskId="1", status="in_progress"
+# ... do work ...
+TaskUpdate: taskId="1", status="completed"
+```
+
 ### Auto-Triggering
 
 When the user's request matches these patterns, delegate to the corresponding agent:
