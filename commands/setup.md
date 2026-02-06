@@ -17,7 +17,8 @@ You are setting up the crispy-doodle plugin. This setup:
 2. Optionally adds test enforcement hooks
 3. Optionally adds git enforcement hooks (commit, push, feature branch)
 4. Optionally configures a git-aware status line
-5. Saves progress for resume capability
+5. Optionally enables Agent Teams (experimental feature for parallel work)
+6. Saves progress for resume capability
 
 ## Setup Flow
 
@@ -28,7 +29,7 @@ mkdir -p ~/.claude/.crispy-doodle
 cat ~/.claude/.crispy-doodle/setup-state.json 2>/dev/null || echo '{"step": 0}'
 ```
 
-If `step > 0` and `step < 8`, ask user:
+If `step > 0` and `step < 9`, ask user:
 - "Resume from step [N]?"
 - "Start fresh?"
 
@@ -243,7 +244,41 @@ Save state:
 echo '{"step": 6, "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": true|false}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
-### Step 7: Apply Hooks to settings.json
+### Step 7: Agent Teams (Experimental)
+
+Use AskUserQuestion:
+```json
+{
+  "question": "Enable Agent Teams? (Experimental feature for parallel work)",
+  "header": "Agent Teams",
+  "options": [
+    {"label": "Yes (recommended)", "description": "Enable coordinated multi-agent teams for complex tasks - uses more tokens but enables parallel work"},
+    {"label": "No", "description": "Use standard single-agent mode only"}
+  ]
+}
+```
+
+If yes, add to `~/.claude/settings.json` or `~/.claude/settings.local.json`:
+```json
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
+```
+
+**Agent Teams Benefits:**
+- Multiple agents work in parallel on different aspects
+- Agents can communicate and coordinate with each other
+- Great for: research/review, new features, debugging, cross-layer changes
+- Falls back gracefully to normal agents if not enabled
+
+Save state:
+```bash
+echo '{"step": 7, "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": ..., "agentTeams": true|false}' > ~/.claude/.crispy-doodle/setup-state.json
+```
+
+### Step 8: Apply Hooks to settings.json
 
 Read `~/.claude/settings.json` and merge selected hooks:
 
@@ -301,11 +336,11 @@ Read `~/.claude/settings.json` and merge selected hooks:
 
 IMPORTANT: Merge hooks into existing Stop array, don't replace entire settings.json!
 
-### Step 8: Completion
+### Step 9: Completion
 
 Save final state:
 ```bash
-echo '{"step": 8, "version": "1.2.0", "setupDate": "'$(date -Iseconds)'", "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": ...}' > ~/.claude/.crispy-doodle/setup-state.json
+echo '{"step": 9, "version": "1.3.0", "setupDate": "'$(date -Iseconds)'", "scope": "...", "claudeMdPath": "...", "testHook": ..., "gitHooks": {...}, "statusLine": ..., "agentTeams": ...}' > ~/.claude/.crispy-doodle/setup-state.json
 ```
 
 Display completion message:
@@ -320,6 +355,7 @@ Configuration:
   • Test enforcement: [enabled/disabled]
   • Git hooks: [list enabled hooks or "none"]
   • Status line: [enabled/disabled]
+  • Agent Teams: [enabled/disabled]
 
 Your 29 specialized agents are now active:
 

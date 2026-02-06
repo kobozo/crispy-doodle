@@ -2,7 +2,31 @@
 
 ## Agent Delegation Rules
 
-**ALWAYS delegate to specialized agents** using the Task tool for non-trivial tasks.
+**ALWAYS delegate to specialized agents** for non-trivial tasks.
+
+### Agent Teams (Preferred for Complex Tasks)
+
+For tasks that benefit from parallel work or multiple perspectives, **create an agent team**:
+
+```
+Create an agent team with:
+- frontend-agent: Handle UI components
+- python-backend: Handle API endpoints
+- testing-agent: Write tests for both
+```
+
+**When to use Agent Teams:**
+- Cross-layer changes (frontend + backend + tests)
+- Research and review (multiple perspectives)
+- New features with multiple components
+- Debugging with competing hypotheses
+
+**When to use single agents (Task tool):**
+- Focused, single-domain tasks
+- Quick fixes or small changes
+- Sequential work with dependencies
+
+If agent teams are not enabled, this will gracefully fall back to normal Task tool delegation.
 
 ### Auto-Triggering
 
@@ -54,6 +78,19 @@ These hooks can be enabled via `/crispy-doodle:setup`:
 | Require commit | Blocks stopping if uncommitted changes exist |
 | Require push | Blocks stopping if unpushed commits exist |
 | Require feature branch | Blocks stopping if on main/master branch |
+
+### Agent Teams Configuration
+
+Enable agent teams in settings.json or settings.local.json:
+```json
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
+```
+
+Or enable via `/crispy-doodle:setup`.
 
 ### Available Commands
 
