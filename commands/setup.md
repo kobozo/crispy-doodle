@@ -258,7 +258,7 @@ Use AskUserQuestion:
 }
 ```
 
-If yes, add to `~/.claude/settings.json` or `~/.claude/settings.local.json`:
+If yes, add to `~/.claude/settings.json`:
 ```json
 {
   "env": {
